@@ -1,0 +1,40 @@
+﻿@model IEnumerable<myApp.Models.ExpenseCate>
+
+@{
+    ViewData["Title"] = "Expense Category List";
+}
+
+<h1 class="text-primary">Expense All Categories</h1>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="ExpenseCategory" asp-action="Create" class="btn btn-primary">Create new Category</a>
+        </div>
+    </div>
+    @if (Model.Count() > 0)
+    {
+
+        <table class="table table-bordered table-striped" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Categories</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ExpenseCate in Model)
+                {
+                    <tr>
+                        <td width="30%">@ExpenseCate.Id</td>
+                        <td width="30%">@ExpenseCate.ExpenseCategory</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+</div>

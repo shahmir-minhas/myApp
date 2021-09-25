@@ -1,0 +1,55 @@
+﻿@model myApp.Models.Expense
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1 class="text-primary">Update</h1>
+
+<form method="post">
+    
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Update Expense</h2>
+            <input asp-for="Id" hidden/>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ExpenseType"></label>
+
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Amount"></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input id="mynput" asp-for="ExpenseType" class="form-control"/>
+                        <span asp-validation-for="ExpenseType" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="Amount" class="form-control" />
+                        <span asp-validation-for="Amount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-success w-75" value="Update" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="index" class="btn btn-danger w-75">Go Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+}
+}
