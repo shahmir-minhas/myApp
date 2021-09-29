@@ -43,5 +43,94 @@ namespace myApp.Controllers
                 return NotFound(obj);
             }
         }
+
+        public IActionResult Delete(int? Id)
+        {   
+            if(Id >= 0)
+            {
+                ExpenseCate obj = _db.ExpenseCategory.Find(Id);
+                if(obj != null)
+                {
+                    return View(obj);
+                }
+                else
+                {
+                    return NotFound();
+                }
+                
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? Id)
+        {
+            if(Id != null)
+            {
+                ExpenseCate obj = _db.ExpenseCategory.Find(Id);
+                if (obj != null)
+                {
+                    _db.ExpenseCategory.Remove(obj);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            
+        }
+
+        public IActionResult Update(int? Id)
+        {
+            if(Id != null)
+            {
+                ExpenseCate obj = _db.ExpenseCategory.Find(Id);
+                if(obj != null)
+                {
+                    return View(obj);
+                }
+                else
+                {
+                    return NotFound();
+                }
+                
+            }
+            else
+            {
+                return NotFound();
+            }
+            
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(ExpenseCate obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.ExpenseCategory.Update(obj);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return NotFound(obj);
+            }
+            
+        }
     }
 }
